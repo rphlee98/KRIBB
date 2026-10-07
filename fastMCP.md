@@ -69,6 +69,14 @@ Python version:                                              3.13.5
 Platform:                                                Windows...
 FastMCP root path: D:\project\my-mcp-server\.venv\Lib\site-packages
 ```
+### 그래도 에러가 나온다면?
+```
+uv add mcp --upgrade
+
+또는
+
+uv add "mcp>=2.0.0"  (명시적으로 변경사항 반영)
+```
 
 ### FastMCP 서버 객체 생성하기: FastMCP 서버를 구축하기 위해 server.py 파일을 생성하고 아래 코드 입력
 ```
