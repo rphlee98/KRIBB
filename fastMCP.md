@@ -37,7 +37,7 @@ uv add mcp --prerelease=allow
 ```
 #### 가져오기 경로
 ```
-from mcp.server.fastapi import MCPServer
+from mcp.server import MCPServer
 ```
 ### 설치 확인하기
 ```
@@ -133,7 +133,16 @@ uv run server.py
 ```
 INFO     Starting MCP server 'calculator' with transport 'stdio'               server.py:1168
 ```
+### 실행결과(에러 발생시)
+```
+uv add mcp --upgrade
 
+또는
+
+uv add "mcp>=2.0.0"
+
+으로 mcp 사용을 명시화
+```
 ### MCP 서버 등록: Claude Desktop의 claude_desktop_config.json
 ```
 {
@@ -144,12 +153,11 @@ INFO     Starting MCP server 'calculator' with transport 'stdio'               s
         "--directory",
         "C:\\project\\my_mcp",
         "run",
-        "server.py"
+        "calculator.py"
       ]
     }
   }
 }
-
 ```
 
 ### MCP 서버 등록: Cursor의 mcp.json
