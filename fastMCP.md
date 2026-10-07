@@ -19,12 +19,26 @@ cd project
 uv init my_mcp
 ```
 ### FastMCP 설치하기
+#### 1. FastMCP Standalone 설치하기
 ```
 cd my_mcp
 uv add "mcp[cli]"
-uv add fastmcp
+uv add "fastmcp>=4.0.0, <5.0.0"
 ```
-
+#### 가져오기 경로
+```
+from fastmcp import FastMCP
+```
+#### 2. MCPServer 공식 SDK v2 설치하기
+```
+cd my_mcp
+uv add "mcp[cli]"
+uv add mcp --prerelease=allow
+```
+#### 가져오기 경로
+```
+from mcp.server.fastapi import MCPServer
+```
 ### 설치 확인하기
 ```
 fastmcp version
@@ -76,6 +90,7 @@ mcp = FastMCP("My MCP Server"): FastMCP 클래스의 인스턴스를 생성합�
 
 ### 2개의 수를 곱하는 도구 예제
 
+1) FastMCP 사용예
 ```
 from fastmcp import FastMCP
 
@@ -88,6 +103,25 @@ def multiply(a: float, b: float) -> float:
 
 if __name__ == "__main__":
     mcp.run()
+```
+2) MCPServer 사용 예
+```
+import asyncio
+from mcp.server.mcpserver import MCPServer
+
+# "calculator"라는 이름의 MCP 서버 생성
+mcp = MCPServer("calculator")
+
+@mcp.tool()
+def multiply(a: float, b: float) -> float:
+    """Multiplies two numbers together."""
+    return a * b
+
+if __name__ == "__main__":
+    # MCPServer는 내부적으로 비동기(asyncio) 기반으로 동작하므로 run()을 호출합니다.
+    # 기본적으로 stdio(표준 입출력) 전송 계층을 통해 실행됩니다.
+    mcp.run()
+
 ```
 
 ### 서버 실행하기: 터미널을 열고 아래 명령어를 입력하여 서버 실행
