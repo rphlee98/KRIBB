@@ -83,6 +83,11 @@ uv add "mcp>=2.0.0"  (명시적으로 변경사항 반영)
 from fastmcp import FastMCP
 mcp = FastMCP("My MCP Server")
 
+또는
+
+from mcp.server import MCPServer
+mcp = MCPServer("My NCP Server")
+
 ```
 
 ### 코드 설명
@@ -115,7 +120,7 @@ if __name__ == "__main__":
 2) MCPServer 사용 예
 ```
 import asyncio
-from mcp.server.mcpserver import MCPServer
+from mcp.server import MCPServer
 
 # "calculator"라는 이름의 MCP 서버 생성
 mcp = MCPServer("calculator")
